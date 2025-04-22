@@ -23,30 +23,53 @@
    */
 
   const cat3InfoBitmovinUI = {
-    settingsButton: null
+    settingsButton: null,
+    airPlayButton: null
+  }
+
+  const messageToRN = (message) => {
+    window.bitmovin.customMessageHandler.sendSynchronous(message)
   }
 
   const cat3InfoSetUIElements = () => {
     const settingsButton = document.querySelector('.bmpui-ui-settingstogglebutton');
     if (settingsButton) {
       cat3InfoBitmovinUI.settingsButton = settingsButton;
-      window.bitmovin.customMessageHandler.sendSynchronous("READY cat3InfoSetUIElements")
+      messageToRN("READY cat3InfoSetUIElements")
+    }
+
+    const airPlayButton = document.querySelector('.ui-airplaytogglebutton');
+
+    if (airPlayButton) {
+      cat3InfoBitmovinUI.airPlayButton = airPlayButton;
+      messageToRN("AIR PLAY BUTTON cat3InfoSetUIElements")
+    }
+  }
+
+  const showHideAirPlayButton = (showButton) => {
+    if (cat3InfoBitmovinUI.airPlayButton) {
+      if (showButton) {
+        
+        cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
+      }
     }
   }
 
   const cat3InfoOnPlayerReady = () => {
-    window.bitmovin.customMessageHandler.sendSynchronous("PLAYER IS READY")
+    messageToRN("PLAYER IS READY")
     cat3InfoSetUIElements();
+    showHideAirPlayButton(false);
   }
 
-
   const onFloatingModeChanged = (data) => {
+    cat3InfoSetUIElements(); // force to find elements
+
     if (cat3InfoBitmovinUI.settingsButton) {
       cat3InfoBitmovinUI.settingsButton.style.position = 'absolute';
       cat3InfoBitmovinUI.settingsButton.style.right = '10px';
       cat3InfoBitmovinUI.settingsButton.style.top = '10px';
 
-      window.bitmovin.customMessageHandler.sendSynchronous("He encontrado el botón settings" + data)
+      messageToRN("He encontrado el botón settings" + data)
     }    
   }
   window.bitmovin.customMessageHandler.on(
