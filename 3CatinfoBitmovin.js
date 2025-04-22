@@ -63,10 +63,10 @@
     if (cat3InfoBitmovinUI.airPlayButton) {
       messageToRN("CLASS LIST: ", JSON.stringify(cat3InfoBitmovinUI.airPlayButton.classList))
       if (showButton) {
-        cat3InfoBitmovinUI.airPlayButton.classList.remove('bmpui-off'); 
+        cat3InfoBitmovinUI.airPlayButton.classList.remove('bmpui-off', 'bmpui-hidden'); 
         //cat3InfoBitmovinUI.airPlayButton.style.display = 'block !important';
       } else {
-        cat3InfoBitmovinUI.airPlayButton.classList.add('bmpui-off'); 
+        cat3InfoBitmovinUI.airPlayButton.classList.add('bmpui-off', 'bmpui-hidden'); 
         // cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
       }
     }
