@@ -47,12 +47,14 @@
     }
 
     const playBacktimeLabel = document.querySelector(
-      '.M-rmp .bmpui-container-wrapper span.bmpui-ui-playbacktimelabel'
+      '* span.bmpui-ui-playbacktimelabel'
     );
 
     if (playBacktimeLabel) {
       cat3InfoBitmovinUI.playBacktimeLabel = playBacktimeLabel;
       messageToRN("PLAYBACK TIME LABEL cat3InfoSetUIElements")
+    } else {
+      messageToRN("NOOOOO ha encontrado PLAYBACK TIME LABEL")
     }
   }
 
