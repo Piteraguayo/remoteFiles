@@ -61,7 +61,7 @@
   const showHideAirPlayButton = (showButton) => {
     messageToRN("SHOW HIDE AIR PLAY BUTTON 3333333")
     if (cat3InfoBitmovinUI.airPlayButton) {
-      
+      messageToRN("CLASS LIST: ", JSON.stringify(cat3InfoBitmovinUI.airPlayButton.classList))
       if (showButton) {
         cat3InfoBitmovinUI.airPlayButton.classList.remove('bmpui-off'); 
         //cat3InfoBitmovinUI.airPlayButton.style.display = 'block !important';
