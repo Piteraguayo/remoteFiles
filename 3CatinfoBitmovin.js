@@ -38,7 +38,7 @@
       messageToRN("READY cat3InfoSetUIElements")
     }
 
-    const airPlayButton = document.querySelector('.ui-airplaytogglebutton');
+    const airPlayButton = document.querySelector('.bmpui-ui-airplaytogglebutton');
 
     if (airPlayButton) {
       cat3InfoBitmovinUI.airPlayButton = airPlayButton;
