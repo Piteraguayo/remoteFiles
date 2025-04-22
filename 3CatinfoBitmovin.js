@@ -43,7 +43,7 @@
 
     if (airPlayButton) {
       cat3InfoBitmovinUI.airPlayButton = airPlayButton;
-      messageToRN("AIR PLAY BUTTON cat3InfoSetUIElements")
+      messageToRN("AIR PLAY BUTTON cat3InfoSetUIElements: " + airPlayButton.innerHTML)
     }
 
     const playBacktimeLabel = document.querySelector(
