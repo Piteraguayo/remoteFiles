@@ -57,11 +57,12 @@
   }
 
   const showHideAirPlayButton = (showButton) => {
+    messageToRN("SHOW HIDE AIR PLAY BUTTON")
     if (cat3InfoBitmovinUI.airPlayButton) {
       if (showButton) {
-        cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
+        cat3InfoBitmovinUI.airPlayButton.style.display = 'block !important';
       } else {
-        cat3InfoBitmovinUI.airPlayButton.style.display = 'block';
+        cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
       }
     }
   }
@@ -70,9 +71,9 @@
     messageToRN("SHOW HIDE PLAYBACK TIME LABEL")
     if (cat3InfoBitmovinUI.playBacktimeLabel) {
       if (showLabel) {
-        cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'none !important';
-      } else {
         cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'block !important';
+      } else {
+        cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'none !important';
       }
     }
   }
