@@ -24,7 +24,9 @@
 
   const cat3InfoBitmovinUI = {
     settingsButton: null,
-    airPlayButton: null
+    airPlayButton: null,
+    playBacktimeLabel: null
+    //.M-rmp .bmpui-container-wrapper span.bmpui-ui-playbacktimelabel
   }
 
   const messageToRN = (message) => {
@@ -44,13 +46,33 @@
       cat3InfoBitmovinUI.airPlayButton = airPlayButton;
       messageToRN("AIR PLAY BUTTON cat3InfoSetUIElements")
     }
+
+    const playBacktimeLabel = document.querySelector(
+      '.M-rmp .bmpui-container-wrapper span.bmpui-ui-playbacktimelabel'
+    );
+
+    if (playBacktimeLabel) {
+      cat3InfoBitmovinUI.playBacktimeLabel = playBacktimeLabel;
+      messageToRN("PLAYBACK TIME LABEL cat3InfoSetUIElements")
+    }
   }
 
   const showHideAirPlayButton = (showButton) => {
     if (cat3InfoBitmovinUI.airPlayButton) {
       if (showButton) {
-        
         cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
+      } else {
+        cat3InfoBitmovinUI.airPlayButton.style.display = 'block';
+      }
+    }
+  }
+
+  const showHidePlaybackTimeLabel = (showLabel) => {
+    if (cat3InfoBitmovinUI.playBacktimeLabel) {
+      if (showLabel) {
+        cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'none !important';
+      } else {
+        cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'block !important';
       }
     }
   }
@@ -59,6 +81,7 @@
     messageToRN("PLAYER IS READY")
     cat3InfoSetUIElements();
     showHideAirPlayButton(false);
+    showHidePlaybackTimeLabel(true);
   }
 
   const onFloatingModeChanged = (data) => {
