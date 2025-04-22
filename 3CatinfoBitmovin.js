@@ -18,7 +18,14 @@
   }
 })(function () {
   var define, module, exports;
-  window.bitmovin.customMessageHandler.on("toggleCloseButton");
+
+  const onToggleMyButton = () => {
+    window.bitmovin.customMessageHandler.sendSynchronous("Hello my son")
+  }
+  window.bitmovin.customMessageHandler.on(
+    "toggleCloseButton",
+    onToggleMyButton
+  );
   return (function e(t, n, r) {
     function s(o, u) {
       if (!n[o]) {
