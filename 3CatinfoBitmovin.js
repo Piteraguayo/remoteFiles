@@ -59,12 +59,15 @@
   }
 
   const showHideAirPlayButton = (showButton) => {
-    messageToRN("SHOW HIDE AIR PLAY BUTTON")
+    messageToRN("SHOW HIDE AIR PLAY BUTTON 3333333")
     if (cat3InfoBitmovinUI.airPlayButton) {
+      
       if (showButton) {
-        cat3InfoBitmovinUI.airPlayButton.style.display = 'block !important';
+        cat3InfoBitmovinUI.airPlayButton.classList.remove('bmpui-off'); 
+        //cat3InfoBitmovinUI.airPlayButton.style.display = 'block !important';
       } else {
-        cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
+        cat3InfoBitmovinUI.airPlayButton.classList.add('bmpui-off'); 
+        // cat3InfoBitmovinUI.airPlayButton.style.display = 'none !important';
       }
     }
   }
