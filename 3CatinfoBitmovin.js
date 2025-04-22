@@ -54,6 +54,11 @@
     onFloatingModeChanged
   );
 
+  window.bitmovin.customMessageHandler.on(
+    "3CatInfoBitMovinReady",
+    cat3InfoOnPlayerReady
+  );
+
   /**
    ******************** END 3CatInfo suplemental code to control UI ********************
    */
@@ -5819,7 +5824,6 @@
                     ? stringutils_1.StringUtils.FORMAT_HHMMSS
                     : stringutils_1.StringUtils.FORMAT_MMSS;
 
-                cat3InfoOnPlayerReady();
                 playbackTimeHandler();
               };
               player.on(
