@@ -18,14 +18,26 @@
   }
 })(function () {
   var define, module, exports;
-
+  /**
+   * CCMA suplemental code to control UI
+   */
   const onToggleMyButton = () => {
-    window.bitmovin.customMessageHandler.sendSynchronous("Hello my son")
+    const element = document.querySelector('.bmpui-ui-settingstogglebutton');
+    if (element) {
+      window.bitmovin.customMessageHandler.sendSynchronous("He encontrado el botón settings")
+    } else {
+      window.bitmovin.customMessageHandler.sendSynchronous(" NOOOOOOOO He encontrado el botón settings")
+    }
+    
   }
   window.bitmovin.customMessageHandler.on(
     "toggleCloseButton",
     onToggleMyButton
   );
+
+  /**
+   * END CCMA suplemental code to control UI
+   */
   return (function e(t, n, r) {
     function s(o, u) {
       if (!n[o]) {
