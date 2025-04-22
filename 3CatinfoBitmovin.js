@@ -19,24 +19,44 @@
 })(function () {
   var define, module, exports;
   /**
-   * CCMA suplemental code to control UI
+   * 3CatInfo suplemental code to control UI
    */
-  const onToggleMyButton = () => {
-    const element = document.querySelector('.bmpui-ui-settingstogglebutton');
-    if (element) {
+
+  const cat3InfoBitmovinUI = {
+    settingsButton: null
+  }
+
+  const cat3InfoSetUIElements = () => {
+    const settingsButton = document.querySelector('.bmpui-ui-settingstogglebutton');
+    if (settingsButton) {
+      cat3InfoBitmovinUI.settingsButton = settingsButton;
       window.bitmovin.customMessageHandler.sendSynchronous("He encontrado el botón settings")
-    } else {
-      window.bitmovin.customMessageHandler.sendSynchronous(" NOOOOOOOO He encontrado el botón settings")
     }
-    
+  }
+
+  const cat3InfoOnPlayerReady = () => {
+    cat3InfoSetUIElements();
+  }
+
+
+  const onFloatingModeChanged = (data) => {
+    if (cat3InfoBitmovinUI.settingsButton) {
+      cat3InfoBitmovinUI.settingsButton.style.position = 'absolute';
+      cat3InfoBitmovinUI.settingsButton.style.right = '10px';
+      cat3InfoBitmovinUI.settingsButton.style.top = '10px';
+
+      window.bitmovin.customMessageHandler.sendSynchronous("He encontrado el botón settings" + data)
+    }    
   }
   window.bitmovin.customMessageHandler.on(
-    "toggleCloseButton",
-    onToggleMyButton
+    "floatingModeChanged",
+    onFloatingModeChanged
   );
 
+  ///////////////////////// _this.player.PlayerEvent.Ready
+
   /**
-   * END CCMA suplemental code to control UI
+   * END 3CatInfo suplemental code to control UI
    */
   return (function e(t, n, r) {
     function s(o, u) {
@@ -5799,6 +5819,8 @@
                   ) >= 3600
                     ? stringutils_1.StringUtils.FORMAT_HHMMSS
                     : stringutils_1.StringUtils.FORMAT_MMSS;
+
+                cat3InfoOnPlayerReady();
                 playbackTimeHandler();
               };
               player.on(
