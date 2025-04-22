@@ -19,7 +19,7 @@
 })(function () {
   var define, module, exports;
   /**
-   * 3CatInfo suplemental code to control UI
+   ******************** 3CatInfo suplemental code to control UI
    */
 
   const cat3InfoBitmovinUI = {
@@ -30,11 +30,12 @@
     const settingsButton = document.querySelector('.bmpui-ui-settingstogglebutton');
     if (settingsButton) {
       cat3InfoBitmovinUI.settingsButton = settingsButton;
-      window.bitmovin.customMessageHandler.sendSynchronous("He encontrado el botón settings")
+      window.bitmovin.customMessageHandler.sendSynchronous("READY cat3InfoSetUIElements")
     }
   }
 
   const cat3InfoOnPlayerReady = () => {
+    window.bitmovin.customMessageHandler.sendSynchronous("PLAYER IS READY")
     cat3InfoSetUIElements();
   }
 
@@ -53,10 +54,8 @@
     onFloatingModeChanged
   );
 
-  ///////////////////////// _this.player.PlayerEvent.Ready
-
   /**
-   * END 3CatInfo suplemental code to control UI
+   ******************** END 3CatInfo suplemental code to control UI ********************
    */
   return (function e(t, n, r) {
     function s(o, u) {
