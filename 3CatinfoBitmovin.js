@@ -26,7 +26,6 @@
     settingsButton: null,
     airPlayButton: null,
     playBacktimeLabel: null
-    //.M-rmp .bmpui-container-wrapper span.bmpui-ui-playbacktimelabel
   }
 
   const messageToRN = (message) => {
@@ -68,6 +67,7 @@
   }
 
   const showHidePlaybackTimeLabel = (showLabel) => {
+    messageToRN("SHOW HIDE PLAYBACK TIME LABEL")
     if (cat3InfoBitmovinUI.playBacktimeLabel) {
       if (showLabel) {
         cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'none !important';
