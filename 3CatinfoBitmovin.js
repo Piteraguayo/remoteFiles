@@ -88,7 +88,7 @@
   }
 
   const cat3InfoOnPlayerReady = () => {
-    messageToRN("PLAYER IS READY 9999: ", document.body.innerHTML)
+    messageToRN("PLAYER IS READY 121212: " + document.body.innerHTML)
     cat3InfoSetUIElements();
     showHideAirPlayButton(false);
     showHidePlaybackTimeLabel(false);
