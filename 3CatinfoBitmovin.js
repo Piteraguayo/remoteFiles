@@ -19448,11 +19448,7 @@
                 components: [
                   new container_1.Container({
                     components: [
-                      //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.CurrentTime, hideInLivePlayback: true }),
-                      /*new seekbar_1.SeekBar({
-                        label: new seekbarlabel_1.SeekBarLabel(),
-                      }),*/
-
+                      /** 3catInfo restored time labels */
                       new playbacktimelabel_1.PlaybackTimeLabel({
                         timeLabelMode:
                           playbacktimelabel_1.PlaybackTimeLabelMode.CurrentTime,
@@ -19465,8 +19461,7 @@
                         timeLabelMode:
                           playbacktimelabel_1.PlaybackTimeLabelMode.TotalTime,
                         cssClasses: ["text-right"],
-                      }),
-                      //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.TotalTime, cssClasses: ['text-right'] }),
+                      })
                     ],
                     cssClasses: ["controlbar-top"],
                   }),
