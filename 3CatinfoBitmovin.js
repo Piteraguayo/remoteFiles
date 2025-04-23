@@ -78,18 +78,20 @@
     messageToRN("SHOW HIDE PLAYBACK TIME LABEL")
     if (cat3InfoBitmovinUI.playBacktimeLabel) {
       if (showLabel) {
-        cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'block !important';
+        // cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'block !important';
+        cat3InfoBitmovinUI.playBacktimeLabel.classList.remove('bmpui-off', 'bmpui-hidden'); 
       } else {
-        cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'none !important';
+        //cat3InfoBitmovinUI.playBacktimeLabel.style.display = 'none !important';
+        cat3InfoBitmovinUI.playBacktimeLabel.classList.add('bmpui-off', 'bmpui-hidden');
       }
     }
   }
 
   const cat3InfoOnPlayerReady = () => {
-    messageToRN("PLAYER IS READY 777777: ")
+    messageToRN("PLAYER IS READY 88888: ")
     cat3InfoSetUIElements();
     showHideAirPlayButton(false);
-    showHidePlaybackTimeLabel(true);
+    showHidePlaybackTimeLabel(false);
 
 
   }
