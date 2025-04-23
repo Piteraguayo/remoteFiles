@@ -86,7 +86,7 @@
   }
 
   const cat3InfoOnPlayerReady = () => {
-    messageToRN("PLAYER IS READY 666666: ")
+    messageToRN("PLAYER IS READY 777777: ")
     cat3InfoSetUIElements();
     showHideAirPlayButton(false);
     showHidePlaybackTimeLabel(true);
@@ -19442,8 +19442,22 @@
                   new container_1.Container({
                     components: [
                       //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.CurrentTime, hideInLivePlayback: true }),
+                      /*new seekbar_1.SeekBar({
+                        label: new seekbarlabel_1.SeekBarLabel(),
+                      }),*/
+
+                      new playbacktimelabel_1.PlaybackTimeLabel({
+                        timeLabelMode:
+                          playbacktimelabel_1.PlaybackTimeLabelMode.CurrentTime,
+                        hideInLivePlayback: true,
+                      }),
                       new seekbar_1.SeekBar({
                         label: new seekbarlabel_1.SeekBarLabel(),
+                      }),
+                      new playbacktimelabel_1.PlaybackTimeLabel({
+                        timeLabelMode:
+                          playbacktimelabel_1.PlaybackTimeLabelMode.TotalTime,
+                        cssClasses: ["text-right"],
                       }),
                       //new PlaybackTimeLabel({ timeLabelMode: PlaybackTimeLabelMode.TotalTime, cssClasses: ['text-right'] }),
                     ],
@@ -20296,7 +20310,7 @@
                   new playbacktoggleoverlay_1.PlaybackToggleOverlay(),
                   new caststatusoverlay_1.CastStatusOverlay(),
                   new upnextitem_1.UpnextItem(config.nextItem),
-                  // controlBar,
+                  controlBar,
                   new titlebar_1.TitleBar(),
                   recommendationOverlay,
                   new errormessageoverlay_1.ErrorMessageOverlay(),
