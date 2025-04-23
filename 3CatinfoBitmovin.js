@@ -20296,7 +20296,7 @@
                   new playbacktoggleoverlay_1.PlaybackToggleOverlay(),
                   new caststatusoverlay_1.CastStatusOverlay(),
                   new upnextitem_1.UpnextItem(config.nextItem),
-                  controlBar,
+                  // controlBar,
                   new titlebar_1.TitleBar(),
                   recommendationOverlay,
                   new errormessageoverlay_1.ErrorMessageOverlay(),
