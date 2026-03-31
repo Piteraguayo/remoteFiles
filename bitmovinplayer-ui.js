@@ -17079,7 +17079,7 @@
               });
 
               // swith pipbutton if platform is android
-              const resultControBar = platform === 'android' ? controlBarWithoutPip : controlBar
+              const resultControBar = platform === 'android' ? controlBar : controlBar
 
               return new uicontainer_1.UIContainer({
                 components: [
