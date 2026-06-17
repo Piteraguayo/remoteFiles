@@ -1,4 +1,4 @@
-// V 0.0.1 build: 2026051301
+/* 2026-06-17 9h26*/
 !(function (e) {
   var t;
   "object" == typeof exports && "undefined" != typeof module
@@ -1978,6 +1978,9 @@
                 (e.on(e.exports.PlayerEvent.Play, function () {
                   r || ((r = !0), n.show());
                 }),
+                  e.on(e.exports.PlayerEvent.Paused, function () {
+                    ((r = !0), n.show());
+                  }),
                   t.onControlsShow.subscribe(function () {
                     r && n.show();
                   }),
@@ -2326,6 +2329,9 @@
                     }),
                     t.on(t.exports.PlayerEvent.Play, function () {
                       s = !1;
+                    }),
+                    t.on(t.exports.PlayerEvent.SourceLoaded, function () {
+                      s = !0;
                     }),
                     t.on(t.exports.PlayerEvent.Warning, function (e) {
                       e.code ===
@@ -2803,15 +2809,16 @@
                 var n,
                   o = i.getComponentForKey(t),
                   t = i.getItemForKey(t);
-                o
-                  ? o.setText(t.label)
-                  : ((n = i.buildListBoxItemButton(t)).onClick.subscribe(
-                      function () {
-                        i.handleSelectionChange(n);
-                      },
-                    ),
-                    i.components.push(n),
-                    i.listBoxElement.append(n.getDomElement()));
+                t &&
+                  (o
+                    ? o.setText(t.label)
+                    : ((n = i.buildListBoxItemButton(t)).onClick.subscribe(
+                        function () {
+                          i.handleSelectionChange(n);
+                        },
+                      ),
+                      i.components.push(n),
+                      i.listBoxElement.append(n.getDomElement())));
               }),
               (i.refreshSelectedItem = function () {
                 for (var e = 0, t = i.items; e < t.length; e++) {
@@ -3837,9 +3844,6 @@
                   e.on(e.exports.PlayerEvent.SourceUnloaded, function () {
                     (a(), s.hide());
                   }),
-                  e.on(e.exports.PlayerEvent.PlaybackFinished, function () {
-                    s.show();
-                  }),
                   e.on(e.exports.PlayerEvent.Play, function () {
                     s.hide();
                   }),
@@ -4278,7 +4282,7 @@
                         g.refreshPlaybackPosition();
                       }),
                       o.on(o.exports.PlayerEvent.SourceLoaded, function () {
-                        g.refreshPlaybackPosition();
+                        g.setPlaybackPosition(0);
                       }),
                       n.getConfig().events.onUpdated.subscribe(function () {
                         l();
@@ -10910,7 +10914,7 @@
             off: "Desactivat",
             auto: "Automàtic",
             back: "Enrere",
-            reset: "Reinicia",
+            reset: "Neteja",
             replay: "Tornar a reproduir",
             normal: "Normal",
             default: "Per defecte",
@@ -11210,7 +11214,8 @@
               t.UIManager =
               t.version =
                 void 0),
-            (t.ReplayButton =
+            (t.BackButton =
+              t.ReplayButton =
               t.SettingsPanelItem =
               t.SubtitleSettingsPanelPage =
               t.SettingsPanelPageOpenButton =
@@ -11248,7 +11253,7 @@
               t.AdSkipButton =
               t.ClickOverlay =
                 void 0),
-            (t.version = "3.52.2"));
+            (t.version = "0.1.0"));
           var n = e("./uimanager"),
             o =
               (Object.defineProperty(t, "UIManager", {
@@ -11921,11 +11926,19 @@
                   return Te.SettingsPanelItem;
                 },
               }),
-              e("./components/replaybutton"));
-          (Object.defineProperty(t, "ReplayButton", {
+              e("./components/replaybutton")),
+            Le =
+              (Object.defineProperty(t, "ReplayButton", {
+                enumerable: !0,
+                get: function () {
+                  return Me.ReplayButton;
+                },
+              }),
+              e("./components/backbutton"));
+          (Object.defineProperty(t, "BackButton", {
             enumerable: !0,
             get: function () {
-              return Me.ReplayButton;
+              return Le.BackButton;
             },
           }),
             "function" != typeof Object.assign &&
@@ -11957,6 +11970,7 @@
           "./components/audioqualityselectbox": 8,
           "./components/audiotracklistbox": 9,
           "./components/audiotrackselectbox": 10,
+          "./components/backbutton": 11,
           "./components/bufferingoverlay": 12,
           "./components/button": 13,
           "./components/caststatusoverlay": 14,
@@ -13770,10 +13784,10 @@
       ],
       111: [
         function (e, o, t) {
-          var u =
+          var l =
               (this && this.__assign) ||
               function () {
-                return (u =
+                return (l =
                   Object.assign ||
                   function (e) {
                     for (var t, n = 1, o = arguments.length; n < o; n++)
@@ -13783,7 +13797,7 @@
                     return e;
                   }).apply(this, arguments);
               },
-            p =
+            c =
               (this && this.__spreadArray) ||
               function (e, t, n) {
                 if (n || 2 === arguments.length)
@@ -13793,143 +13807,139 @@
                         t[i]);
                 return e.concat(o || Array.prototype.slice.call(t));
               },
-            f =
+            u =
               (Object.defineProperty(t, "__esModule", { value: !0 }),
               (t.UifactoryService = void 0),
               e("./components/subtitleoverlay")),
-            g = e("./components/settingspanelpage"),
-            d = e("./components/settingspanelitem"),
-            h = e("./components/videoqualityselectbox"),
-            y = e("./components/playbackspeedselectbox"),
-            m = e("./components/audiotrackselectbox"),
-            b = e("./components/audioqualityselectbox"),
-            v = e("./components/settingspanel"),
-            P = e("./components/subtitlesettings/subtitlesettingspanelpage"),
-            C = e("./components/settingspanelpageopenbutton"),
-            S = e("./components/subtitlesettings/subtitlesettingslabel"),
-            w = e("./components/subtitleselectbox"),
-            _ = e("./components/controlbar"),
-            E = e("./components/container"),
-            O = e("./components/playbacktimelabel"),
-            x = e("./components/seekbar"),
-            k = e("./components/seekbarlabel"),
-            T = e("./components/playbacktogglebutton"),
-            M = e("./components/volumetogglebutton"),
-            L = e("./components/volumeslider"),
-            A = e("./components/spacer"),
-            B = e("./components/pictureinpicturetogglebutton"),
-            I = e("./components/airplaytogglebutton"),
-            N = e("./components/casttogglebutton"),
-            W = e("./components/vrtogglebutton"),
-            G = e("./components/settingstogglebutton"),
-            K = e("./components/fullscreentogglebutton"),
-            q = e("./components/uicontainer"),
-            j = e("./components/bufferingoverlay"),
-            D = e("./components/playbacktoggleoverlay"),
-            U = e("./components/caststatusoverlay"),
-            Q = e("./components/titlebar"),
-            z = e("./components/recommendationoverlay"),
-            Y = e("./components/errormessageoverlay"),
-            R = e("./components/closebutton"),
-            V = e("./components/metadatalabel"),
-            H = e("./playerutils"),
-            F = e("./localization/i18n"),
-            X = e("../ts/uiutils"),
-            J = e("./components/backbutton");
+            p = e("./components/settingspanelpage"),
+            f = e("./components/settingspanelitem"),
+            g = e("./components/videoqualityselectbox"),
+            d = e("./components/playbackspeedselectbox"),
+            h = e("./components/audiotrackselectbox"),
+            y = e("./components/audioqualityselectbox"),
+            m = e("./components/settingspanel"),
+            b = e("./components/subtitlesettings/subtitlesettingspanelpage"),
+            v = e("./components/settingspanelpageopenbutton"),
+            P = e("./components/subtitlesettings/subtitlesettingslabel"),
+            C = e("./components/subtitleselectbox"),
+            S = e("./components/controlbar"),
+            w = e("./components/container"),
+            _ = e("./components/playbacktimelabel"),
+            E = e("./components/seekbar"),
+            O = e("./components/seekbarlabel"),
+            x = e("./components/playbacktogglebutton"),
+            k = e("./components/volumetogglebutton"),
+            T = e("./components/volumeslider"),
+            M = e("./components/spacer"),
+            L = e("./components/pictureinpicturetogglebutton"),
+            A = e("./components/airplaytogglebutton"),
+            H = e("./components/casttogglebutton"),
+            F = e("./components/vrtogglebutton"),
+            N = e("./components/settingstogglebutton"),
+            W = e("./components/fullscreentogglebutton"),
+            G = e("./components/uicontainer"),
+            B = e("./components/bufferingoverlay"),
+            I = e("./components/playbacktoggleoverlay"),
+            j = e("./components/caststatusoverlay"),
+            K = e("./components/titlebar"),
+            D = e("./components/recommendationoverlay"),
+            q = e("./components/errormessageoverlay"),
+            U = e("./components/closebutton"),
+            z = e("./components/metadatalabel"),
+            R = e("./playerutils"),
+            V = e("./localization/i18n"),
+            Q = e("../ts/uiutils");
           function n() {}
           ((n.modernUnifiedUI = function (e) {
-            var t = new J.BackButton(),
-              n = new K.FullscreenToggleButton(),
-              o = X.UIUtils.getQueryParams(),
-              i = new f.SubtitleOverlay(),
-              r = new g.SettingsPanelPage({
+            var t = Q.UIUtils.getQueryParams(),
+              n = new u.SubtitleOverlay(),
+              o = new p.SettingsPanelPage({
                 components: [
-                  new d.SettingsPanelItem(
-                    F.i18n.getLocalizer("settings.video.quality"),
-                    new h.VideoQualitySelectBox(),
+                  new f.SettingsPanelItem(
+                    V.i18n.getLocalizer("settings.video.quality"),
+                    new g.VideoQualitySelectBox(),
                   ),
-                  new d.SettingsPanelItem(
-                    F.i18n.getLocalizer("speed"),
-                    new y.PlaybackSpeedSelectBox(),
+                  new f.SettingsPanelItem(
+                    V.i18n.getLocalizer("speed"),
+                    new d.PlaybackSpeedSelectBox(),
                   ),
-                  new d.SettingsPanelItem(
-                    F.i18n.getLocalizer("settings.audio.track"),
-                    new m.AudioTrackSelectBox(),
+                  new f.SettingsPanelItem(
+                    V.i18n.getLocalizer("settings.audio.track"),
+                    new h.AudioTrackSelectBox(),
                   ),
-                  new d.SettingsPanelItem(
-                    F.i18n.getLocalizer("settings.audio.quality"),
-                    new b.AudioQualitySelectBox(),
+                  new f.SettingsPanelItem(
+                    V.i18n.getLocalizer("settings.audio.quality"),
+                    new y.AudioQualitySelectBox(),
                   ),
                 ],
               }),
-              s = new v.SettingsPanel(
-                u(
-                  u(
-                    { components: [r], hidden: !0 },
+              i = new m.SettingsPanel(
+                l(
+                  l(
+                    { components: [o], hidden: !0 },
                     e && { pageTransitionAnimation: !1 },
                   ),
                   { hideDelay: -1 },
                 ),
               ),
-              a = new P.SubtitleSettingsPanelPage({
-                settingsPanel: s,
-                overlay: i,
+              r = new b.SubtitleSettingsPanelPage({
+                settingsPanel: i,
+                overlay: n,
               }),
-              l = new w.SubtitleSelectBox(),
-              c = new C.SettingsPanelPageOpenButton({
-                targetPage: a,
-                container: s,
-                ariaLabel: F.i18n.getLocalizer("settings.subtitles"),
-                text: F.i18n.getLocalizer("open"),
+              s = new C.SubtitleSelectBox(),
+              a = new v.SettingsPanelPageOpenButton({
+                targetPage: r,
+                container: i,
+                ariaLabel: V.i18n.getLocalizer("settings.subtitles"),
+                text: V.i18n.getLocalizer("open"),
               }),
-              r =
-                (r.addComponent(
-                  new d.SettingsPanelItem(
-                    new S.SubtitleSettingsLabel({
-                      text: F.i18n.getLocalizer("settings.subtitles"),
-                      opener: c,
+              o =
+                (o.addComponent(
+                  new f.SettingsPanelItem(
+                    new P.SubtitleSettingsLabel({
+                      text: V.i18n.getLocalizer("settings.subtitles"),
+                      opener: a,
                     }),
-                    l,
+                    s,
                     { role: "menubar" },
                   ),
                 ),
-                s.addComponent(a),
+                i.addComponent(r),
                 e &&
-                  (s.addComponent(new R.CloseButton({ target: s })),
-                  a.addComponent(new R.CloseButton({ target: s }))),
-                new _.ControlBar({
-                  components: p(
-                    p([], e ? [] : [s], !0),
+                  (i.addComponent(new U.CloseButton({ target: i })),
+                  r.addComponent(new U.CloseButton({ target: i }))),
+                new S.ControlBar({
+                  components: c(
+                    c([], e ? [] : [i], !0),
                     [
-                      new E.Container({
+                      new w.Container({
                         components: [
-                          new O.PlaybackTimeLabel({
-                            timeLabelMode: O.PlaybackTimeLabelMode.CurrentTime,
+                          new _.PlaybackTimeLabel({
+                            timeLabelMode: _.PlaybackTimeLabelMode.CurrentTime,
                             hideInLivePlayback: !0,
                           }),
-                          new x.SeekBar({ label: new k.SeekBarLabel() }),
-                          new O.PlaybackTimeLabel({
-                            timeLabelMode: O.PlaybackTimeLabelMode.TotalTime,
+                          new E.SeekBar({ label: new O.SeekBarLabel() }),
+                          new _.PlaybackTimeLabel({
+                            timeLabelMode: _.PlaybackTimeLabelMode.TotalTime,
                             hideInLivePlayback: !0,
                             cssClasses: ["text-right"],
                           }),
                         ],
                         cssClasses: ["controlbar-top"],
                       }),
-                      new E.Container({
-                        components: p(
-                          p([], e ? [] : [new T.PlaybackToggleButton()], !0),
+                      new w.Container({
+                        components: c(
+                          c([], e ? [] : [new x.PlaybackToggleButton()], !0),
                           [
-                            new M.VolumeToggleButton(),
-                            new L.VolumeSlider(),
-                            new A.Spacer(),
-                            new B.PictureInPictureToggleButton(),
-                            new I.AirPlayToggleButton(),
-                            new N.CastToggleButton(),
-                            new W.VRToggleButton(),
-                            new G.SettingsToggleButton({ settingsPanel: s }),
-                            t,
-                            n,
+                            new k.VolumeToggleButton(),
+                            new T.VolumeSlider(),
+                            new M.Spacer(),
+                            new L.PictureInPictureToggleButton(),
+                            new A.AirPlayToggleButton(),
+                            new H.CastToggleButton(),
+                            new F.VRToggleButton(),
+                            new N.SettingsToggleButton({ settingsPanel: i }),
+                            new W.FullscreenToggleButton(),
                           ],
                           !1,
                         ),
@@ -13939,47 +13949,47 @@
                     !1,
                   ),
                 })),
-              c = "true" === String(o.isReels),
-              l = e
+              a = "true" === String(t.isReels),
+              s = e
                 ? [
-                    i,
-                    new j.BufferingOverlay(),
-                    new U.CastStatusOverlay(),
-                    new O.PlaybackTimeLabel({
-                      timeLabelMode: O.PlaybackTimeLabelMode.TotalTime,
+                    n,
+                    new B.BufferingOverlay(),
+                    new j.CastStatusOverlay(),
+                    new _.PlaybackTimeLabel({
+                      timeLabelMode: _.PlaybackTimeLabelMode.TotalTime,
                       cssClasses: ["live-next-to-play"],
                     }),
-                    new D.PlaybackToggleOverlay(),
-                    new z.RecommendationOverlay(),
+                    new I.PlaybackToggleOverlay(),
+                    new D.RecommendationOverlay(),
                   ]
                 : [
-                    i,
-                    new j.BufferingOverlay(),
-                    new O.PlaybackTimeLabel({
-                      timeLabelMode: O.PlaybackTimeLabelMode.TotalTime,
+                    n,
+                    new B.BufferingOverlay(),
+                    new _.PlaybackTimeLabel({
+                      timeLabelMode: _.PlaybackTimeLabelMode.TotalTime,
                       cssClasses: ["live-next-to-play"],
                     }),
-                    new D.PlaybackToggleOverlay(),
-                    new U.CastStatusOverlay(),
+                    new I.PlaybackToggleOverlay(),
+                    new j.CastStatusOverlay(),
                   ];
-            return new q.UIContainer(
-              u(
-                u(
+            return new G.UIContainer(
+              l(
+                l(
                   {
-                    components: c
-                      ? [new D.PlaybackToggleOverlay({ hideGoLiveButton: !0 })]
-                      : p(
-                          p(
-                            p(
-                              p(
-                                p(p([], l, !0), [r], !1),
+                    components: a
+                      ? [new I.PlaybackToggleOverlay({ hideGoLiveButton: !0 })]
+                      : c(
+                          c(
+                            c(
+                              c(
+                                c(c([], s, !0), [o], !1),
                                 e
                                   ? [
-                                      new Q.TitleBar({
+                                      new K.TitleBar({
                                         components: [
-                                          new V.MetadataLabel({
+                                          new z.MetadataLabel({
                                             content:
-                                              V.MetadataLabelContent.Title,
+                                              z.MetadataLabelContent.Title,
                                           }),
                                         ],
                                       }),
@@ -13987,18 +13997,18 @@
                                   : [],
                                 !0,
                               ),
-                              e ? [s] : [],
+                              e ? [i] : [],
                               !0,
                             ),
-                            e ? [] : [new z.RecommendationOverlay()],
+                            e ? [] : [new D.RecommendationOverlay()],
                             !0,
                           ),
-                          [new Y.ErrorMessageOverlay()],
+                          [new q.ErrorMessageOverlay()],
                           !1,
                         ),
                   },
                   e && {
-                    cssClasses: c
+                    cssClasses: a
                       ? ["ui-skin-smallscreen", "ui-reels"]
                       : ["ui-skin-smallscreen"],
                   },
@@ -14006,9 +14016,9 @@
                 {
                   hideDelay: 2e3,
                   hidePlayerStateExceptions: [
-                    H.PlayerUtils.PlayerState.Prepared,
-                    H.PlayerUtils.PlayerState.Paused,
-                    H.PlayerUtils.PlayerState.Finished,
+                    R.PlayerUtils.PlayerState.Prepared,
+                    R.PlayerUtils.PlayerState.Paused,
+                    R.PlayerUtils.PlayerState.Finished,
                   ],
                 },
               ),
@@ -14021,7 +14031,6 @@
           "./components/airplaytogglebutton": 7,
           "./components/audioqualityselectbox": 8,
           "./components/audiotrackselectbox": 10,
-          "./components/backbutton": 11,
           "./components/bufferingoverlay": 12,
           "./components/caststatusoverlay": 14,
           "./components/casttogglebutton": 15,
@@ -14741,7 +14750,9 @@
                 Array.from(e).forEach(function (e) {
                   var t;
                   e.src &&
-                    e.src.includes("bitmovinplayer-ui.js") &&
+                    (e.src.includes("bitmovinplayer-ui.js") ||
+                      e.src.includes("bitmovinplayer-ui.min.js") ||
+                      e.src.includes("3CatInfoBitmovinUI.js")) &&
                     ((e = new URL(e.src)),
                     (t = new URLSearchParams(e.search).get("platform")),
                     (e = new URLSearchParams(e.search).get("isReels")),
